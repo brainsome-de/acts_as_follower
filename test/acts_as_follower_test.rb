@@ -60,15 +60,15 @@ class ActsAsFollowerTest < ActiveSupport::TestCase
         @jon.follow(@jon)
       end
 
-      should_not_change("Follow count") { Follow.count }
-      should_not_change("@jon.follow_count") { @jon.follow_count }
+      should_change("Follow count") { Follow.count }
+      should_change("@jon.follow_count") { @jon.follow_count }
 
-      should "not set the follower" do
-        assert_not_equal @jon, Follow.last.follower
+      should "set the follower" do
+        assert_equal @jon, Follow.last.follower
       end
 
-      should "not set the followable" do
-        assert_not_equal @jon, Follow.last.followable
+      should "set the followable" do
+        assert_equal @jon, Follow.last.followable
       end
     end
 

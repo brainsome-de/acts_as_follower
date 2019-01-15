@@ -28,10 +28,8 @@ module ActsAsFollower #:nodoc:
       # Creates a new follow record for this instance to follow the passed object.
       # Does not allow duplicate records to be created.
       def follow(followable)
-        if self != followable
-          params = {followable_id: followable.id, followable_type: parent_class_name(followable)}
-          self.follows.where(params).first_or_create!
-        end
+        params = {followable_id: followable.id, followable_type: parent_class_name(followable)}
+        self.follows.where(params).first_or_create!
       end
 
       # Deletes the follow record if it exists.
